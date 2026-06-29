@@ -1,1056 +1,1331 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sabrina Elyse's Jollibee Birthday Party 🐝</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --red:#E30613;--red2:#B30000;--yellow:#FFD600;--cream:#FFF8E7;
-  --orange:#FF6D00;--white:#fff;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Nunito',sans-serif;background:var(--cream);overflow-x:hidden}
+<!doctype html>
+<html lang="en" style="scroll-behavior: smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sabrina Elyse's Jollibee Birthday Party 🐝</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fredoka+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --red: #e31837;
+        --red2: #b30000;
+        --yellow: #ffc20e;
+        --cream: #fff8e7;
+        --orange: #ff6d00;
+        --white: #fff;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-snap-type: y mandatory;
+      }
+      body {
+        font-family: "Nunito", sans-serif;
+        background: var(--cream);
+        overflow-x: hidden;
+        color: #222;
+      }
 
-/* ── NAV ── */
-.nav{position:fixed;top:0;left:0;right:0;z-index:999;background:var(--red);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;box-shadow:0 3px 16px rgba(0,0,0,.2)}
-.nav-logo{height:46px;padding:5px 0;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
-.nav-links{display:flex;gap:0}
-.nav-links a{color:#fff;text-decoration:none;font-family:'Fredoka One',cursive;
-  font-size:.95rem;padding:16px 18px;border-bottom:3px solid transparent;
-  transition:background .2s,color .2s}
-.nav-links a:hover,.nav-links a.active{background:var(--yellow);color:var(--red);
-  border-bottom-color:var(--red2)}
+      /* ── CONFETTI BACKGROUND ── */
+      #confetti-canvas {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
 
-/* ── CONFETTI ── */
-#confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:0}
+      /* ── SEAMLESS VIEWPORT SNAPPING ── */
+      section,
+      footer {
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        transform-style: preserve-3d;
+        padding: 80px 20px 100px 20px;
+        width: 100%;
+      }
 
-/* ── HERO ── */
-#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;padding:86px 20px 60px;
-  background:linear-gradient(150deg,#B30000 0%,var(--red) 35%,var(--orange) 65%,var(--yellow) 100%);
-  overflow:hidden;z-index:1}
-#hero::before{content:'';position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(255,255,255,.1) 2px,transparent 2px);
-  background-size:38px 38px;pointer-events:none}
+      section {
+        perspective: 1000px;
+      }
 
-.hero-mascot{position:relative;z-index:2;
-  animation:mascotBounce 2.8s ease-in-out infinite}
-.hero-mascot img{width:clamp(160px,28vw,260px);filter:drop-shadow(0 10px 30px rgba(0,0,0,.35))}
-@keyframes mascotBounce{
-  0%,100%{transform:translateY(0) rotate(-3deg)}
-  30%{transform:translateY(-18px) rotate(3deg) scale(1.05)}
-  60%{transform:translateY(-8px) rotate(-2deg) scale(1.02)}
-}
+      /* ── HERO SECTION ── */
+      #hero {
+        background: linear-gradient(
+          150deg,
+          #b30000 0%,
+          var(--red) 35%,
+          var(--orange) 65%,
+          var(--yellow) 100%
+        );
+        overflow: hidden;
+        z-index: 1;
+        padding-top: 60px;
+        padding-bottom: 100px;
+      }
+      #hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 2px, transparent 2px);
+        background-size: 30px 30px;
+        pointer-events: none;
+        transform: translateZ(-150px) scale(1.5);
+      }
 
-.hero-logo img{width:clamp(180px,32vw,320px);filter:drop-shadow(0 4px 16px rgba(0,0,0,.4));
-  position:relative;z-index:2;margin-bottom:8px}
+      .parallax-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        max-width: 600px;
+        transform-style: preserve-3d;
+        transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+        text-align: center;
+        margin: auto;
+        gap: 16px;
+        z-index: 10;
+      }
 
-.hero-invite{font-family:'Fredoka One',cursive;font-size:clamp(1rem,2.5vw,1.3rem);
-  color:rgba(255,255,255,.9);position:relative;z-index:2;letter-spacing:.08em;
-  text-transform:uppercase;text-shadow:1px 1px 0 rgba(0,0,0,.2)}
-.hero-name{font-family:'Fredoka One',cursive;font-size:clamp(2.8rem,9vw,6rem);
-  color:#fff;text-align:center;line-height:1;position:relative;z-index:2;
-  text-shadow:4px 4px 0 var(--red2),0 0 50px rgba(255,214,0,.6);
-  animation:namePulse 3s ease-in-out infinite}
-@keyframes namePulse{
-  0%,100%{text-shadow:4px 4px 0 var(--red2),0 0 40px rgba(255,214,0,.5)}
-  50%{text-shadow:4px 4px 0 var(--red2),0 0 80px rgba(255,214,0,.95),0 0 120px rgba(255,180,0,.35)}
-}
-.hero-tagline{font-family:'Fredoka One',cursive;font-size:clamp(1.1rem,3vw,1.6rem);
-  color:var(--yellow);position:relative;z-index:2;text-shadow:1px 1px 0 rgba(0,0,0,.3);
-  margin-top:4px}
+      .hero-logo img {
+        width: 140px;
+        filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+        transform: translateZ(30px);
+      }
 
-.hero-card{background:rgba(255,255,255,.15);backdrop-filter:blur(10px);
-  border:2.5px solid rgba(255,255,255,.4);border-radius:28px;
-  padding:24px 36px;margin-top:24px;z-index:2;position:relative;
-  display:flex;flex-direction:column;gap:10px;min-width:300px;max-width:500px;width:90%;
-  animation:cardFloat 4s ease-in-out infinite}
-@keyframes cardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.hc-row{display:flex;align-items:center;gap:10px;color:#fff;font-size:1.05rem;font-weight:700}
-.hc-row .ico{font-size:1.3rem}
+      .hero-invite {
+        font-family: "Fredoka One", cursive;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.95);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        transform: translateZ(20px);
+        width: 100%;
+        text-align: center;
+      }
+      .hero-name {
+        font-family: "Fredoka One", cursive;
+        font-size: clamp(2.8rem, 12vw, 5rem);
+        color: #fff;
+        line-height: 1.1;
+        text-shadow:
+          3px 3px 0 var(--red2),
+          0 0 40px rgba(255, 214, 0, 0.5);
+        transform: translateZ(70px);
+        width: 100%;
+        text-align: center;
+      }
+      .hero-tagline {
+        font-family: "Fredoka One", cursive;
+        font-size: 1.2rem;
+        color: var(--yellow);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        transform: translateZ(40px);
+        width: 100%;
+        text-align: center;
+      }
 
-.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
-  z-index:2;display:flex;flex-direction:column;align-items:center;
-  color:rgba(255,255,255,.8);font-size:.8rem;font-weight:800;letter-spacing:.06em;
-  animation:bounce 2s ease infinite}
-@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
-.scroll-hint .arr{font-size:1.6rem}
+      .hero-card {
+        background: rgba(255, 255, 255, 0.18);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-radius: 24px;
+        padding: 18px 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        max-width: 440px;
+        transform: translateZ(50px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        text-align: left;
+      }
+      .hc-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+      .hc-row .ico {
+        font-size: 1.2rem;
+      }
 
-/* ── WAVES ── */
-.wave{position:relative;overflow:hidden;height:70px}
-.wave svg{position:absolute;bottom:0;width:100%;height:100%}
+      .scroll-hint {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        z-index: 2;
+      }
 
-/* ── SECTION COMMONS ── */
-section{position:relative;z-index:1;padding:70px 20px}
-.inner{max-width:880px;margin:0 auto}
-.sec-icon{font-size:2.8rem;text-align:center;display:block;margin-bottom:6px}
-.sec-head{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,4.5vw,2.8rem);
-  color:var(--red);text-align:center;margin-bottom:8px}
-.sec-sub{text-align:center;color:#666;font-size:1rem;font-weight:700;margin-bottom:38px}
+      /* ── SEAMLESS WAVES ── */
+      .wave {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 50px;
+        overflow: hidden;
+        z-index: 1;
+      }
+      .wave.bottom {
+        bottom: -1px;
+      }
+      .wave svg {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+      }
 
-/* ── DETAIL CARDS ── */
-#about{background:#fff}
-.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:18px}
-.dcard{background:var(--cream);border:3px solid var(--yellow);border-radius:22px;
-  padding:26px 18px;text-align:center;cursor:pointer;
-  transition:transform .25s,box-shadow .25s}
-.dcard:hover{transform:translateY(-7px) scale(1.03);box-shadow:0 14px 36px rgba(227,6,19,.14)}
-.dcard .big{font-size:3rem;margin-bottom:10px;display:block}
-.dcard img.big-img{width:80px;height:80px;object-fit:contain;margin:0 auto 10px;display:block}
-.dcard h3{font-family:'Fredoka One',cursive;font-size:.85rem;color:#aaa;
-  letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
-.dcard p{font-size:1rem;font-weight:800;color:#222;line-height:1.3}
-.dcard .hl{color:var(--red);font-family:'Fredoka One',cursive;font-size:1.2rem}
+      /* ── STRUCTURAL WRAPPERS ── */
+      .inner {
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+      .sec-icon {
+        font-size: 2.5rem;
+        margin-bottom: 8px;
+        text-align: center;
+      }
 
-/* ── FOOD MENU ── */
-#menu{background:var(--cream)}
-.menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:22px}
-.mcard{background:#fff;border:3px solid var(--yellow);border-radius:22px;
-  overflow:hidden;text-align:center;
-  transition:transform .25s,box-shadow .25s;cursor:default}
-.mcard:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(227,6,19,.16)}
-.mcard-img{width:100%;height:160px;object-fit:cover;background:#FFF8E7;display:block}
-.mcard-body{padding:14px 14px 18px}
-.mcard-name{font-family:'Fredoka One',cursive;font-size:1.15rem;color:var(--red);margin-bottom:4px}
-.mcard-desc{font-size:.88rem;color:#666;font-weight:600}
-.mcard-badge{display:inline-block;background:var(--yellow);color:var(--red);
-  font-family:'Fredoka One',cursive;font-size:.75rem;padding:3px 10px;border-radius:50px;
-  margin-top:6px;letter-spacing:.04em}
+      .sec-head {
+        font-family: "Fredoka One", cursive;
+        font-size: clamp(1.8rem, 6vw, 2.6rem);
+        color: var(--red);
+        text-align: center;
+        line-height: 1.2;
+        margin-bottom: 12px;
+        width: 100%;
+      }
+      .sec-sub {
+        text-align: center;
+        color: #555;
+        font-size: 0.95rem;
+        font-weight: 700;
+        line-height: 1.4;
+        margin-bottom: 32px;
+        max-width: 500px;
+        padding: 0 10px;
+        width: 100%;
+      }
 
-/* ── RSVP ── */
-.rsvp-box{background:var(--red);border-radius:24px;padding:36px 28px;margin-top:48px;
-  position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:center;gap:16px}
-.rsvp-box::before{content:'';position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(255,255,255,.08) 2px,transparent 2px);
-  background-size:28px 28px}
-.rsvp-box h2{font-family:'Fredoka One',cursive;font-size:1.7rem;color:var(--yellow);
-  text-shadow:2px 2px 0 rgba(0,0,0,.2);z-index:1;text-align:center}
-.rsvp-box p{color:rgba(255,255,255,.9);font-size:.95rem;font-weight:700;z-index:1;text-align:center}
-.rsvp-form{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;z-index:1;width:100%;max-width:480px}
-.rsvp-form input{flex:1;min-width:180px;padding:13px 20px;border:none;border-radius:50px;
-  font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;outline:none}
-.rsvp-form input:focus{box-shadow:0 0 0 3px var(--yellow)}
-.btn-rsvp{background:var(--yellow);color:var(--red);border:none;border-radius:50px;
-  padding:13px 28px;font-family:'Fredoka One',cursive;font-size:1.1rem;cursor:pointer;
-  box-shadow:0 4px 0 #b8860b;transition:transform .18s,box-shadow .18s;white-space:nowrap}
-.btn-rsvp:hover{transform:translateY(-3px);box-shadow:0 7px 0 #b8860b}
-.btn-rsvp:active{transform:translateY(1px);box-shadow:0 1px 0 #b8860b}
-.rsvp-ok{display:none;background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.4);
-  border-radius:14px;padding:14px 24px;color:#fff;font-size:1.1rem;font-weight:800;text-align:center;z-index:1}
+      /* ── GRID CONFIGURATIONS ── */
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        width: 100%;
+        padding: 0 8px;
+        transform-style: preserve-3d;
+      }
 
-/* ── COUNTDOWN ── */
-#countdown{background:var(--red);position:relative;overflow:hidden}
-#countdown::before{content:'';position:absolute;inset:0;
-  background-image:radial-gradient(circle,rgba(255,255,255,.07) 2px,transparent 2px);
-  background-size:32px 32px}
-.cd-title{font-family:'Fredoka One',cursive;font-size:clamp(1.5rem,3.5vw,2.2rem);
-  color:var(--yellow);text-align:center;text-shadow:2px 2px 0 rgba(0,0,0,.2);
-  position:relative;z-index:1;margin-bottom:30px}
-.cd-grid{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative;z-index:1}
-.cd-box{background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.35);
-  border-radius:18px;padding:20px 24px;min-width:100px;text-align:center;backdrop-filter:blur(6px)}
-.cd-num{font-family:'Fredoka One',cursive;font-size:3.2rem;color:#fff;
-  line-height:1;display:block;text-shadow:2px 2px 0 rgba(0,0,0,.2)}
-.cd-lbl{font-size:.75rem;font-weight:800;color:var(--yellow);
-  text-transform:uppercase;letter-spacing:.1em;display:block;margin-top:4px}
+      /* ── DETAIL CARDS ── */
+      #about {
+        background: #fff;
+      }
+      .dcard {
+        background: var(--cream);
+        border: 3px solid var(--yellow);
+        border-radius: 20px;
+        padding: 20px 16px;
+        text-align: center;
+        transform-style: preserve-3d;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
+        transition:
+          transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.4s;
+      }
+      .dcard * {
+        transform: translateZ(20px);
+      }
+      .dcard .big {
+        font-size: 2.5rem;
+        margin-bottom: 6px;
+        display: block;
+      }
+      .dcard h3 {
+        font-family: "Fredoka One", cursive;
+        font-size: 0.8rem;
+        color: #999;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+      .dcard p {
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: #222;
+      }
+      .dcard .hl {
+        font-family: "Fredoka One", cursive;
+        font-size: 1.15rem;
+        color: var(--red);
+      }
 
-/* ── PROGRAMME ── */
-#programme{background:var(--cream)}
-.tl{position:relative;padding-left:46px;display:flex;flex-direction:column}
-.tl::before{content:'';position:absolute;left:18px;top:16px;bottom:16px;width:4px;
-  background:linear-gradient(to bottom,var(--red),var(--yellow),var(--red));border-radius:4px}
-.tli{position:relative;padding:0 0 32px 22px;opacity:0;transform:translateX(-20px);
-  transition:opacity .6s,transform .6s}
-.tli.vis{opacity:1;transform:translateX(0)}
-.tl-dot{position:absolute;left:-34px;top:2px;width:26px;height:26px;
-  background:var(--red);border:4px solid var(--yellow);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;font-size:.85rem;
-  box-shadow:0 2px 8px rgba(227,6,19,.3);z-index:2}
-.tl-time{font-family:'Fredoka One',cursive;color:var(--red);font-size:1rem;margin-bottom:2px}
-.tl-title{font-size:1.1rem;font-weight:800;color:#222}
-.tl-desc{font-size:.9rem;color:#666;font-weight:600;margin-top:2px}
+      /* ── STANDALONE RSVP PAGE ── */
+      #rsvp {
+        background: var(--red);
+        overflow: hidden;
+      }
+      #rsvp::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.08) 2px, transparent 2px);
+        background-size: 26px 26px;
+      }
+      .rsvp-form-container {
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 14px;
+        z-index: 10;
+        padding: 0 10px;
+      }
+      .rsvp-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 1;
+        width: 100%;
+      }
+      .rsvp-form input {
+        width: 100%;
+        padding: 14px 20px;
+        border: 3px solid var(--yellow);
+        border-radius: 50px;
+        font-family: "Nunito", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        outline: none;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .btn-rsvp {
+        background: var(--yellow);
+        color: var(--red);
+        border: none;
+        border-radius: 50px;
+        padding: 14px 28px;
+        font-family: "Fredoka One", cursive;
+        font-size: 1.1rem;
+        cursor: pointer;
+        box-shadow: 0 5px 0 #b8860b;
+        transition: transform 0.1s;
+        width: 100%;
+      }
+      .btn-rsvp:active {
+        transform: translateY(2px);
+        box-shadow: 0 2px 0 #b8860b;
+      }
+      .rsvp-ok {
+        display: none;
+        background: rgba(255, 255, 255, 0.18);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50px;
+        padding: 14px 24px;
+        color: #fff;
+        font-size: 1.05rem;
+        font-weight: 800;
+        text-align: center;
+        z-index: 1;
+        width: 100%;
+      }
 
-/* ── GALLERY ── */
-#gallery{background:#fff}
-.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
-.gal-item{border-radius:18px;overflow:hidden;aspect-ratio:1;position:relative;
-  cursor:pointer;border:3px solid var(--yellow);
-  box-shadow:0 4px 14px rgba(0,0,0,.08);
-  transition:transform .25s,box-shadow .25s}
-.gal-item:hover{transform:scale(1.05) rotate(1.5deg);
-  box-shadow:0 12px 36px rgba(227,6,19,.2);z-index:2}
-.gal-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s}
-.gal-item:hover img{transform:scale(1.1)}
-.gal-ov{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;
-  align-items:center;justify-content:center;font-size:1.8rem;transition:background .3s}
-.gal-item:hover .gal-ov{background:rgba(227,6,19,.25)}
-.gal-placeholder{width:100%;height:100%;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;gap:6px;
-  background:linear-gradient(135deg,#FFF8E7,#FFE0B2)}
-.gal-placeholder .gi{font-size:3.5rem}
-.gal-placeholder .gl{font-family:'Fredoka One',cursive;font-size:.8rem;
-  color:var(--red);opacity:.7;letter-spacing:.04em}
+      /* ── COUNTDOWN ── */
+      #countdown {
+        background: var(--red);
+        overflow: hidden;
+      }
+      #countdown::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(circle, rgba(255, 255, 255, 0.06) 2px, transparent 2px);
+        background-size: 26px 26px;
+      }
+      .cd-title {
+        font-family: "Fredoka One", cursive;
+        font-size: 1.3rem;
+        color: var(--yellow);
+        text-align: center;
+        margin-bottom: 24px;
+        z-index: 1;
+        padding: 0 10px;
+        width: 100%;
+      }
+      .cd-grid {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        z-index: 1;
+      }
+      .cd-box {
+        background: rgba(255, 255, 255, 0.12);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 16px;
+        padding: 12px 8px;
+        flex: 1;
+        max-width: 85px;
+        text-align: center;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+      .cd-num {
+        font-family: "Fredoka One", cursive;
+        font-size: 1.8rem;
+        color: #fff;
+        line-height: 1;
+      }
+      .cd-lbl {
+        font-size: 0.65rem;
+        font-weight: 800;
+        color: var(--yellow);
+        text-transform: uppercase;
+        margin-top: 2px;
+        display: block;
+      }
 
-/* LIGHTBOX */
-.lbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;
-  align-items:center;justify-content:center;flex-direction:column;padding:20px}
-.lbox.open{display:flex}
-.lbox img{max-width:90vw;max-height:80vh;object-fit:contain;border-radius:18px;
-  border:4px solid var(--yellow);box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.lbox-emoji{font-size:10rem}
-.lbox-close{position:absolute;top:18px;right:22px;width:46px;height:46px;
-  background:var(--red);border-radius:50%;color:#fff;font-size:1.6rem;font-weight:900;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;
-  transition:transform .2s;border:none}
-.lbox-close:hover{transform:scale(1.15) rotate(90deg)}
-.lbox-hint{color:rgba(255,255,255,.7);margin-top:16px;font-family:'Fredoka One',cursive;font-size:1rem}
+      /* ── PROGRAMME TIMELINE ── */
+      #programme {
+        background: var(--cream);
+      }
+      .tl {
+        position: relative;
+        padding-left: 32px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 520px;
+        text-align: left;
+      }
+      .tl::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 10px;
+        bottom: 10px;
+        width: 4px;
+        background: linear-gradient(to bottom, var(--red), var(--yellow), var(--red));
+        border-radius: 4px;
+      }
+      .tli {
+        position: relative;
+        padding: 0 0 24px 14px;
+        opacity: 0;
+        transform: translateX(-15px);
+        transition:
+          opacity 0.6s,
+          transform 0.6s;
+      }
+      .tli.vis {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .tl-dot {
+        position: absolute;
+        left: -29px;
+        top: 2px;
+        width: 22px;
+        height: 22px;
+        background: var(--red);
+        border: 3px solid var(--yellow);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        z-index: 2;
+      }
+      .tl-time {
+        font-family: "Fredoka One", cursive;
+        color: var(--red);
+        font-size: 0.9rem;
+      }
+      .tl-title {
+        font-size: 0.95rem;
+        font-weight: 800;
+        color: #222;
+      }
+      .tl-desc {
+        font-size: 0.8rem;
+        color: #555;
+        font-weight: 600;
+        margin-top: 2px;
+        line-height: 1.4;
+      }
 
-/* ── LOCATION ── */
-#location{background:var(--cream)}
-.loc-card{background:#fff;border:3px solid var(--yellow);border-radius:22px;
-  overflow:hidden;box-shadow:0 8px 32px rgba(227,6,19,.09)}
-.loc-map{width:100%;height:280px;border:none;display:block}
-.loc-info{padding:22px 26px;display:flex;flex-direction:column;gap:10px}
-.loc-info h3{font-family:'Fredoka One',cursive;font-size:1.4rem;color:var(--red);
-  display:flex;align-items:center;gap:8px}
-.loc-logo{height:32px;vertical-align:middle}
-.loc-row{display:flex;align-items:flex-start;gap:8px;font-size:.95rem;font-weight:700;color:#444}
-.loc-row .ico{font-size:1.2rem;flex-shrink:0}
-.btn-dir{background:var(--red);color:#fff;border:none;border-radius:50px;
-  padding:13px 26px;font-family:'Fredoka One',cursive;font-size:1.05rem;cursor:pointer;
-  text-decoration:none;display:inline-block;text-align:center;
-  box-shadow:0 4px 0 #8b0000,0 6px 18px rgba(227,6,19,.25);align-self:flex-start;margin-top:4px;
-  transition:transform .18s,box-shadow .18s}
-.btn-dir:hover{transform:translateY(-3px);box-shadow:0 7px 0 #8b0000,0 12px 22px rgba(227,6,19,.25)}
+      /* ── LOCATION MAP ── */
+      #location {
+        background: #fff;
+      }
+      .loc-card {
+        background: var(--cream);
+        border: 3px solid var(--yellow);
+        border-radius: 20px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 460px;
+      }
+      .loc-map {
+        width: 100%;
+        height: 220px;
+        border: none;
+        display: block;
+      }
+      .loc-info {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        text-align: left;
+      }
+      .loc-info h3 {
+        font-family: "Fredoka One", cursive;
+        font-size: 1.15rem;
+        color: var(--red);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .loc-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: #444;
+      }
+      .loc-row .ico {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .btn-dir {
+        background: var(--red);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 10px 20px;
+        font-family: "Fredoka One", cursive;
+        font-size: 0.9rem;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        box-shadow: 0 4px 0 #8b0000;
+        margin-top: 4px;
+        width: 100%;
+        transition: transform 0.1s;
+      }
+      .btn-dir:active {
+        transform: translateY(2px);
+        box-shadow: 0 2px 0 #8b0000;
+      }
 
-/* ── PHOTOBOOTH ── */
-#page-pb{display:block}.page.hidden{display:none}
-#photobooth{min-height:100vh;padding:86px 20px 70px;
-  background:linear-gradient(160deg,#FFF8E7 0%,#FFE0B2 100%)}
-.pb-hero{text-align:center;margin-bottom:44px}
-.pb-hero .pb-logo{height:70px;margin-bottom:10px;animation:mascotBounce 2.5s infinite}
-.pb-title{font-family:'Fredoka One',cursive;font-size:clamp(1.8rem,5.5vw,3.4rem);
-  color:var(--red);text-shadow:3px 3px 0 rgba(227,6,19,.18)}
-.pb-sub{font-size:1rem;font-weight:700;color:#666;margin-top:6px}
+      /* ── FOOTER ── */
+      footer {
+        background: var(--red);
+        padding: 50px 16px;
+        text-align: center;
+        z-index: 1;
+        min-height: auto;
+      }
+      .ft-logo {
+        height: 50px;
+        margin-bottom: 6px;
+        display: inline-block;
+        font-size: 2.5rem;
+      }
+      .ft-name {
+        font-family: "Fredoka One", cursive;
+        font-size: 1.25rem;
+        color: var(--yellow);
+      }
+      footer p {
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 0.85rem;
+        font-weight: 700;
+        margin-top: 4px;
+      }
 
-.pb-booth{background:#fff;border:4px solid var(--yellow);border-radius:30px;
-  max-width:700px;margin:0 auto;overflow:hidden;box-shadow:0 12px 48px rgba(227,6,19,.13)}
-.pb-hdr{background:var(--red);padding:16px 24px;display:flex;align-items:center;
-  justify-content:space-between;flex-wrap:wrap;gap:10px}
-.pb-hdr-title{font-family:'Fredoka One',cursive;font-size:1.3rem;color:var(--yellow)}
-.pb-btns{display:flex;gap:8px;flex-wrap:wrap}
-.pb-btn{background:var(--yellow);color:var(--red);border:none;border-radius:50px;
-  padding:9px 20px;font-family:'Fredoka One',cursive;font-size:.95rem;cursor:pointer;
-  box-shadow:0 3px 0 #b8860b;transition:transform .18s,box-shadow .18s}
-.pb-btn:hover{transform:translateY(-2px);box-shadow:0 5px 0 #b8860b}
-.pb-btn.sec{background:rgba(255,255,255,.2);color:#fff;box-shadow:0 3px 0 rgba(0,0,0,.2)}
-.pb-btn.sec:hover{background:rgba(255,255,255,.3)}
+      /* Legal disclaimer text */
+      .ft-legal {
+        font-size: 0.72rem !important;
+        color: rgba(255, 255, 255, 0.55) !important;
+        font-weight: 600 !important;
+        line-height: 1.5;
+        max-width: 580px;
+        margin: 16px auto 0 auto;
+      }
 
-.pb-stage{padding:24px;display:flex;flex-direction:column;align-items:center;gap:18px}
-.pb-upload{border:3px dashed var(--yellow);border-radius:18px;padding:36px 20px;
-  text-align:center;cursor:pointer;width:100%;max-width:540px;
-  transition:background .2s,border-color .2s}
-.pb-upload:hover{background:rgba(255,214,0,.1);border-color:var(--red)}
-.pb-upload input{display:none}
-.pb-upload .ui{font-size:2.8rem;display:block;margin-bottom:8px}
-.pb-upload p{font-size:.95rem;font-weight:700;color:#666}
-.pb-upload strong{color:var(--red)}
+      /* ── FLOATING BALLOONS ── */
+      .balloon {
+        position: fixed;
+        bottom: -60px;
+        pointer-events: none;
+        z-index: 0;
+        animation: bRise linear infinite;
+      }
+      @keyframes bRise {
+        0% {
+          transform: translateY(0) translateX(0) rotate(-5deg);
+          opacity: 0.9;
+        }
+        50% {
+          transform: translateY(-50vh) translateX(-15px) rotate(5deg);
+        }
+        100% {
+          transform: translateY(-115vh) translateX(10px) rotate(-5deg);
+          opacity: 0;
+        }
+      }
 
-.pb-cw{display:none;width:100%;max-width:540px}
-#pb-canvas{width:100%;border-radius:14px;border:3px solid var(--yellow);display:block;background:#f0f0f0}
+      /* ── SYSTEM TOAST ── */
+      #toast {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%) translateY(100px);
+        background: var(--red);
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 50px;
+        font-family: "Fredoka One", cursive;
+        font-size: 0.95rem;
+        z-index: 9999;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+      }
+      #toast.show {
+        transform: translateX(-50%) translateY(0);
+      }
 
-.frame-sel{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;width:100%;max-width:540px}
-.f-opt{border:3px solid #ddd;border-radius:10px;padding:9px 14px;
-  font-family:'Fredoka One',cursive;font-size:.9rem;cursor:pointer;background:var(--cream);
-  transition:border-color .2s,transform .18s,background .2s,color .2s;color:#444;
-  display:flex;align-items:center;gap:6px}
-.f-opt:hover{border-color:var(--red);transform:scale(1.04)}
-.f-opt.active{border-color:var(--red);background:var(--red);color:#fff}
+      /* ── FLOATING SCROLL TO TOP ── */
+      #scroll-top-btn {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        width: 48px;
+        height: 48px;
+        background: var(--yellow);
+        border: 3px solid var(--red);
+        border-radius: 50%;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+        opacity: 0;
+        pointer-events: none;
+        cursor: pointer;
+        transition:
+          opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+          transform 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+          background-color 0.2s;
+      }
+      #scroll-top-btn svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: var(--red);
+        stroke-width: 4;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: transform 0.2s ease;
+      }
+      #scroll-top-btn.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #scroll-top-btn:active {
+        transform: scale(0.92);
+      }
 
-.sticker-bar{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;
-  background:var(--cream);border:2px solid var(--yellow);border-radius:14px;
-  padding:12px 18px;width:100%;max-width:540px}
-.st-opt{font-size:1.8rem;cursor:pointer;border-radius:8px;padding:4px 8px;
-  transition:transform .18s,background .18s;user-select:none}
-.st-opt:hover{transform:scale(1.3) rotate(-10deg);background:var(--yellow)}
+      /* ── FLOATING MUSIC CONTROLLER ── */
+      #music-btn {
+        position: fixed;
+        bottom: 24px;
+        left: 24px;
+        width: 48px;
+        height: 48px;
+        background: var(--yellow);
+        border: 3px solid var(--red);
+        border-radius: 50%;
+        z-index: 999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+        cursor: pointer;
+        font-size: 1.2rem;
+        transition:
+          transform 0.25s cubic-bezier(0.25, 1, 0.5, 1),
+          background-color 0.2s;
+      }
+      #music-btn:active {
+        transform: scale(0.92);
+      }
+      #music-btn.playing {
+        animation: musicPulse 1.4s infinite alternate cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      }
+      @keyframes musicPulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
+        }
+        100% {
+          transform: scale(1.1);
+          box-shadow: 0 8px 22px rgba(227, 24, 55, 0.4);
+        }
+      }
 
-.pb-dl{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border:none;
-  border-radius:50px;padding:15px 38px;font-family:'Fredoka One',cursive;font-size:1.15rem;
-  cursor:pointer;box-shadow:0 6px 0 #8b0000,0 10px 28px rgba(227,6,19,.25);margin-top:8px;
-  transition:transform .18s,box-shadow .18s}
-.pb-dl:hover{transform:translateY(-4px);box-shadow:0 10px 0 #8b0000,0 16px 34px rgba(227,6,19,.3)}
+      /* ── DESKTOP SCALING DESIGN ── */
+      @media (min-width: 650px) {
+        section,
+        footer {
+          padding: 100px 24px 140px 24px;
+        }
+        footer {
+          padding: 60px 24px;
+        }
+        .wave {
+          height: 65px;
+        }
 
-.saved-strip{display:none;width:100%;max-width:540px}
-.saved-strip h4{font-family:'Fredoka One',cursive;color:var(--red);margin-bottom:8px;font-size:1rem;text-align:center}
-.thumb-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.thumb{width:90px;height:90px;border-radius:10px;border:3px solid var(--yellow);
-  object-fit:cover;cursor:pointer;transition:transform .2s}
-.thumb:hover{transform:scale(1.12) rotate(2deg)}
+        .detail-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
+        }
+        .dcard {
+          padding: 24px 20px;
+        }
 
-/* ── FOOTER ── */
-footer{background:var(--red);padding:38px 20px;text-align:center;position:relative;z-index:1}
-.ft-logo{height:64px;margin-bottom:10px;animation:beeFloat 3s ease-in-out infinite;display:inline-block}
-@keyframes beeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-.ft-name{font-family:'Fredoka One',cursive;font-size:1.5rem;color:var(--yellow);margin:6px 0}
-footer p{color:rgba(255,255,255,.8);font-size:.9rem;font-weight:700}
-.ft-link{color:var(--yellow);font-family:'Fredoka One',cursive;font-size:1rem;text-decoration:none}
+        .dcard:hover {
+          transform: translateY(-8px) rotateX(4deg) rotateY(4deg);
+          box-shadow: 0 20px 40px rgba(227, 24, 55, 0.15);
+          cursor: pointer;
+        }
 
-/* ── BALLOONS ── */
-.balloon{position:fixed;bottom:-130px;pointer-events:none;z-index:0;
-  animation:bRise linear infinite;filter:drop-shadow(0 4px 8px rgba(0,0,0,.1))}
-@keyframes bRise{
-  0%{transform:translateY(0) translateX(0) rotate(-8deg);opacity:.9}
-  25%{transform:translateY(-25vh) translateX(16px) rotate(8deg)}
-  50%{transform:translateY(-50vh) translateX(-12px) rotate(-6deg)}
-  75%{transform:translateY(-75vh) translateX(14px) rotate(7deg)}
-  100%{transform:translateY(-110vh) translateX(-8px) rotate(-5deg);opacity:0}
-}
+        #hero {
+          padding: 80px 24px 140px 24px;
+        }
+        .hero-logo img {
+          width: 160px;
+        }
+        .hero-invite {
+          font-size: 1.2rem;
+        }
+        .hero-card {
+          max-width: 460px;
+          padding: 22px 26px;
+          gap: 10px;
+        }
+        .hc-row {
+          font-size: 1.05rem;
+        }
 
-/* ── TOAST ── */
-#toast{position:fixed;bottom:28px;left:50%;
-  transform:translateX(-50%) translateY(80px);
-  background:var(--red);color:#fff;padding:13px 26px;border-radius:50px;
-  font-family:'Fredoka One',cursive;font-size:1.05rem;z-index:9999;
-  transition:transform .4s cubic-bezier(.34,1.56,.64,1);
-  box-shadow:0 8px 30px rgba(227,6,19,.4);pointer-events:none;white-space:nowrap}
-#toast.show{transform:translateX(-50%) translateY(0)}
+        .rsvp-form {
+          flex-direction: row;
+        }
+        .rsvp-form input {
+          flex: 1;
+          text-align: left;
+        }
+        .btn-rsvp {
+          width: auto;
+        }
+        .btn-dir {
+          width: auto;
+        }
 
-@media(max-width:600px){
-  .nav-links a{padding:14px 10px;font-size:.8rem}
-  .cd-box{min-width:78px;padding:14px 14px}
-  .cd-num{font-size:2.6rem}
-  .hero-card{padding:20px 22px}
-}
-</style>
-</head>
-<body>
+        #scroll-top-btn:hover {
+          transform: translateY(-4px) scale(1.05);
+          background: #fff;
+          box-shadow: 0 8px 20px rgba(227, 24, 55, 0.25);
+        }
+        #scroll-top-btn:hover svg {
+          transform: translateY(-2px);
+        }
 
-<canvas id="confetti-canvas"></canvas>
+        #music-btn:hover {
+          transform: translateY(-4px) scale(1.05);
+          background: #fff;
+          box-shadow: 0 8px 20px rgba(227, 24, 55, 0.25);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="confetti-canvas"></canvas>
 
-<!-- NAV -->
-<nav class="nav" id="topnav">
-  <img class="nav-logo"
-    src="https://companieslogo.com/img/orig/JBFCF_BIG-6f9dd9a2.png?t=1720244492"
-    alt="Jollibee logo"
-    onerror="this.style.display='none'">
-  <div class="nav-links">
-    <a href="#" onclick="showPage('invite');return false" class="active" id="nav-invite">🎉 Invite</a>
-    <a href="#" onclick="showPage('pb');return false" id="nav-pb">📸 Photobooth</a>
-  </div>
-</nav>
+    <!-- BACKGROUND AUDIO CONTAINER -->
+    <audio id="bg-music" src="jollibee.mp3" loop autoplay prefetch="auto"></audio>
 
-<!-- ═══════ INVITE PAGE ═══════ -->
-<div id="page-invite" class="page">
+    <!-- FLOATING MUSIC BUTTON CONTROL -->
+    <button id="music-btn" onclick="toggleMusic()" aria-label="Toggle party music">🎵</button>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-logo">
-    <img src="https://companieslogo.com/img/orig/JBFCF_BIG-6f9dd9a2.png?t=1720244492"
-         alt="Jollibee"
-         onerror="this.outerHTML='<div style=\'font-family:Fredoka One,cursive;font-size:3rem;color:#FFD600;text-shadow:3px 3px 0 #8B0000;\'>🐝 Jollibee</div>'">
-  </div>
-  <div class="hero-invite">Cordially invites you to celebrate</div>
-  <div class="hero-name">Sabrina Elyse</div>
-  <div class="hero-tagline">🎂 1st Birthday Party! 🎉</div>
-  <div class="hero-card">
-    <div class="hc-row"><span class="ico">📅</span> July 26, 2026 · Sunday</div>
-    <div class="hc-row"><span class="ico">⏰</span> 12:30 PM – 3:00 PM</div>
-    <div class="hc-row"><span class="ico">📍</span> Jollibee Malhacan, Meycauayan</div>
-  </div>
-  <!-- Mascot floats at bottom right -->
-  <div class="hero-mascot" style="position:absolute;bottom:60px;right:5vw;z-index:3">
-    <img src="https://www.pngarts.com/files/3/Jollibee-PNG-Image-Transparent.png"
-         alt="Jollibee mascot"
-         onerror="this.style.fontSize='6rem';this.outerHTML='<div style=\'font-size:6rem;animation:mascotBounce 2.8s ease-in-out infinite\'>🐝</div>'">
-  </div>
-  <div class="scroll-hint">
-    <span class="arr">↓</span>
-    See details below
-  </div>
-</section>
+    <!-- FLOATING SCROLL BACK TO TOP SVG BUTTON -->
+    <button id="scroll-top-btn" onclick="scrollToTop()" aria-label="Scroll to top">
+      <svg viewBox="0 0 24 24">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </button>
 
-<!-- WAVE -->
-<div class="wave" style="background:var(--red);margin-top:-2px">
-  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="#fff">
-    <path d="M0,70 L0,28 C240,70 480,0 720,32 C960,62 1200,8 1440,36 L1440,70Z"/>
-  </svg>
-</div>
-
-<!-- DETAILS -->
-<section id="about">
-  <div class="inner">
-    <span class="sec-icon">🎊</span>
-    <h2 class="sec-head">Party Details</h2>
-    <p class="sec-sub">Mark your calendars — it's going to be one bee-utiful celebration! 🐝</p>
-    <div class="detail-grid">
-      <div class="dcard" onclick="triggerBalloons()">
-        <img class="big-img"
-          src="https://companieslogo.com/img/orig/JBFCF-f8098eac.png?t=1720244492"
-          alt="Jollibee"
-          onerror="this.outerHTML='<span class=big>🐝</span>'">
-        <h3>The Birthday Star</h3>
-        <p class="hl">Sabrina Elyse</p>
-        <p>Turning 1! 🎂</p>
-      </div>
-      <div class="dcard" onclick="triggerBalloons()">
-        <span class="big">🗓️</span>
-        <h3>Date</h3>
-        <p class="hl">July 26, 2026</p>
-        <p>Sunday</p>
-      </div>
-      <div class="dcard" onclick="triggerBalloons()">
-        <span class="big">⏰</span>
-        <h3>Time</h3>
-        <p class="hl">12:30 PM</p>
-        <p>Until 3:00 PM</p>
-      </div>
-      <div class="dcard" onclick="triggerBalloons()">
-        <span class="big">📍</span>
-        <h3>Venue</h3>
-        <p class="hl">Jollibee Malhacan</p>
-        <p>Meycauayan, Bulacan</p>
-      </div>
-      <div class="dcard" onclick="triggerBalloons()">
-        <span class="big">🎈</span>
-        <h3>Theme</h3>
-        <p class="hl">Jollibee Kids Party</p>
-        <p>Bee-utiful fun! 🐝</p>
-      </div>
-      <div class="dcard" onclick="triggerBalloons()">
-        <span class="big">👗</span>
-        <h3>Dress Code</h3>
-        <p class="hl">Fun & Festive!</p>
-        <p>Red & Yellow 💛❤️</p>
-      </div>
-    </div>
-
-    <!-- RSVP -->
-    <div class="rsvp-box">
-      <h2>🎉 Will you join us? RSVP now!</h2>
-      <p>Let us know you're coming so we can save your seat! 🍟</p>
-      <div class="rsvp-form" id="rsvp-form">
-        <input type="text" id="rsvp-name" placeholder="Your name…" maxlength="40">
-        <button class="btn-rsvp" onclick="submitRSVP()">Count me in! 🙋</button>
-      </div>
-      <div class="rsvp-ok" id="rsvp-ok">🎊 See you at Sabrina's party! 🐝</div>
-    </div>
-  </div>
-</section>
-
-<!-- WAVE2 -->
-<div class="wave" style="background:#fff;margin-top:-2px">
-  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="var(--cream)">
-    <path d="M0,0 C360,70 720,0 1080,60 C1260,80 1380,22 1440,40 L1440,70 L0,70Z"/>
-  </svg>
-</div>
-
-<!-- COUNTDOWN -->
-<section id="countdown">
-  <div class="inner">
-    <div class="cd-title">⏳ Counting down to Sabrina's Big Day!</div>
-    <div class="cd-grid">
-      <div class="cd-box"><span class="cd-num" id="cd-d">--</span><span class="cd-lbl">Days</span></div>
-      <div class="cd-box"><span class="cd-num" id="cd-h">--</span><span class="cd-lbl">Hours</span></div>
-      <div class="cd-box"><span class="cd-num" id="cd-m">--</span><span class="cd-lbl">Minutes</span></div>
-      <div class="cd-box"><span class="cd-num" id="cd-s">--</span><span class="cd-lbl">Seconds</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- WAVE3 -->
-<div class="wave" style="background:var(--red);margin-top:-2px">
-  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="var(--cream)">
-    <path d="M0,70 L0,42 C360,0 720,70 1080,22 C1260,0 1380,50 1440,30 L1440,70Z"/>
-  </svg>
-</div>
-
-<!-- FOOD MENU -->
-<section id="menu">
-  <div class="inner">
-    <span class="sec-icon">🍽️</span>
-    <h2 class="sec-head">Party Food Menu</h2>
-    <p class="sec-sub">Your Jollibee favorites, all ready to enjoy! 😋</p>
-    <div class="menu-grid">
-      <div class="mcard">
-        <img class="mcard-img"
-          src="https://toppng.com/uploads/preview/bucket-of-chicken-png-PNG-free-PNG-Images_124019.png"
-          alt="Chickenjoy Bucket"
-          onerror="this.style.cssText='height:160px;background:#FFF8E7;display:flex;align-items:center;justify-content:center;font-size:4rem';this.outerHTML='<div class=mcard-img style=&quot;display:flex;align-items:center;justify-content:center;font-size:4rem&quot;>🍗</div>'">
-        <div class="mcard-body">
-          <div class="mcard-name">Chickenjoy Bucket</div>
-          <div class="mcard-desc">Crispylicious & Juicylicious fried chicken — the one and only!</div>
-          <div class="mcard-badge">⭐ Bestseller</div>
+    <!-- HERO SECTION -->
+    <section id="hero">
+      <div class="parallax-wrapper">
+        <div class="hero-logo">
+          <img src="jollibee.png" alt="Jollibee Logo" />
+        </div>
+        <div class="hero-invite">Cordially invites you to celebrate</div>
+        <div class="hero-name">Sabrina Elyse</div>
+        <div class="hero-tagline">🎂 1st Birthday Party! 🎉</div>
+        <div class="hero-card">
+          <div class="hc-row"><span class="ico">📅</span> July 26, 2026 · Sunday</div>
+          <div class="hc-row"><span class="ico">⏰</span> 12:30 PM – 3:00 PM</div>
+          <div class="hc-row"><span class="ico">📍</span> Jollibee Malhacan, Meycauayan</div>
         </div>
       </div>
-      <div class="mcard">
-        <div class="mcard-img" style="display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg,#FFF8E7,#FFE0B2)">🍝</div>
-        <div class="mcard-body">
-          <div class="mcard-name">Jolly Spaghetti</div>
-          <div class="mcard-desc">Sweet-style Filipino spaghetti with hotdog bits & meaty sauce</div>
-          <div class="mcard-badge">🐝 Kid Favorite</div>
-        </div>
-      </div>
-      <div class="mcard">
-        <div class="mcard-img" style="display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg,#FFF8E7,#FFE0B2)">🍔</div>
-        <div class="mcard-body">
-          <div class="mcard-name">Yumburger</div>
-          <div class="mcard-desc">The classic Jollibee burger — beefy, juicy & oh-so-yum!</div>
-          <div class="mcard-badge">😋 Classic</div>
-        </div>
-      </div>
-      <div class="mcard">
-        <div class="mcard-img" style="display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg,#FFF8E7,#FFE0B2)">🍟</div>
-        <div class="mcard-body">
-          <div class="mcard-name">Jolly Crispy Fries</div>
-          <div class="mcard-desc">Golden, crispy, perfectly salted fries that everyone loves</div>
-          <div class="mcard-badge">🔥 Must-Try</div>
-        </div>
-      </div>
-      <div class="mcard">
-        <div class="mcard-img" style="display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg,#FFF8E7,#FFE0B2)">🥧</div>
-        <div class="mcard-body">
-          <div class="mcard-name">Peach Mango Pie</div>
-          <div class="mcard-desc">Sweet & flaky hand pie with real peach mango filling</div>
-          <div class="mcard-badge">🍑 So Good!</div>
-        </div>
-      </div>
-      <div class="mcard">
-        <div class="mcard-img" style="display:flex;align-items:center;justify-content:center;font-size:5rem;background:linear-gradient(135deg,#FFF8E7,#FFE0B2)">🎂</div>
-        <div class="mcard-body">
-          <div class="mcard-name">Birthday Cake!</div>
-          <div class="mcard-desc">Sabrina's special 1st birthday cake — wish & blow! 🕯️</div>
-          <div class="mcard-badge">🎉 Party Exclusive</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- WAVE4 -->
-<div class="wave" style="background:var(--cream);margin-top:-2px">
-  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="#fff">
-    <path d="M0,0 L0,50 C480,70 960,10 1440,50 L1440,0Z"/>
-  </svg>
-</div>
-
-<!-- PROGRAMME -->
-<section id="programme">
-  <div class="inner">
-    <span class="sec-icon">🎪</span>
-    <h2 class="sec-head">Party Programme</h2>
-    <p class="sec-sub">Here's everything lined up for Sabrina's magical day! 🎠</p>
-    <div class="tl">
-      <div class="tli"><div class="tl-dot">🎈</div>
-        <div class="tl-time">12:30 PM</div>
-        <div class="tl-title">Doors Open & Welcome</div>
-        <div class="tl-desc">Arrive & settle in! Photo ops at the Jollibee-themed entrance 📸</div></div>
-      <div class="tli"><div class="tl-dot">🍗</div>
-        <div class="tl-time">12:45 PM</div>
-        <div class="tl-title">Lunch Time!</div>
-        <div class="tl-desc">Enjoy Chickenjoy, Jolly Spaghetti, Yumburger & more Jollibee favorites!</div></div>
-      <div class="tli"><div class="tl-dot">🐝</div>
-        <div class="tl-time">1:15 PM</div>
-        <div class="tl-title">Jollibee Makes His Grand Entrance!</div>
-        <div class="tl-desc">The one and only Jollibee arrives for hugs, selfies & dancing! 🕺💃</div></div>
-      <div class="tli"><div class="tl-dot">🎮</div>
-        <div class="tl-time">1:30 PM</div>
-        <div class="tl-title">Kiddie Games & Activities</div>
-        <div class="tl-desc">Fun party games hosted by Jollibee's party team with cool prizes! 🏆</div></div>
-      <div class="tli"><div class="tl-dot">🎂</div>
-        <div class="tl-time">2:00 PM</div>
-        <div class="tl-title">Birthday Cake Ceremony!</div>
-        <div class="tl-desc">Happy Birthday, Sabrina! Candle blowing, singing & cake for all! 🕯️🎵</div></div>
-      <div class="tli"><div class="tl-dot">📸</div>
-        <div class="tl-time">2:20 PM</div>
-        <div class="tl-title">Photobooth & Loot Bags!</div>
-        <div class="tl-desc">Snap your memories at the photobooth & grab your Jollibee loot bag! 🎁</div></div>
-      <div class="tli"><div class="tl-dot">👋</div>
-        <div class="tl-time">3:00 PM</div>
-        <div class="tl-title">Party End</div>
-        <div class="tl-desc">Thank you for making Sabrina's 1st birthday extra special! 💛</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- WAVE5 -->
-<div class="wave" style="background:#fff;margin-top:-2px">
-  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="var(--cream)">
-    <path d="M0,70 L0,20 C360,70 720,0 1080,50 C1260,70 1380,20 1440,40 L1440,70Z"/>
-  </svg>
-</div>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="inner">
-    <span class="sec-icon">🖼️</span>
-    <h2 class="sec-head">Sneak Peek Gallery</h2>
-    <p class="sec-sub">A little taste before the big day — click to explore! 💛</p>
-    <div class="gal-grid">
-      <div class="gal-item" onclick="openLbox(this)">
-        <img src="https://companieslogo.com/img/orig/JBFCF-f8098eac.png?t=1720244492"
-             alt="Jollibee"
-             style="object-fit:contain;padding:18px;background:#FFF8E7"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="gal-placeholder" style="display:none"><span class="gi">🐝</span><span class="gl">Jollibee Mascot</span></div>
-        <div class="gal-ov">🔍</div>
-      </div>
-      <div class="gal-item" onclick="openLboxEmoji('🎂')">
-        <div class="gal-placeholder"><span class="gi">🎂</span><span class="gl">Birthday Cake</span></div>
-        <div class="gal-ov">🔍</div>
-      </div>
-      <div class="gal-item" onclick="openLboxEmoji('🍗')">
-        <div class="gal-placeholder"><span class="gi">🍗</span><span class="gl">Chickenjoy!</span></div>
-        <div class="gal-ov">🔍</div>
-      </div>
-      <div class="gal-item" onclick="openLboxEmoji('🍝')">
-        <div class="gal-placeholder"><span class="gi">🍝</span><span class="gl">Jolly Spaghetti</span></div>
-        <div class="gal-ov">🔍</div>
-      </div>
-      <div class="gal-item" onclick="openLboxEmoji('🎈')">
-        <div class="gal-placeholder"><span class="gi">🎈</span><span class="gl">Decorations</span></div>
-        <div class="gal-ov">🔍</div>
-      </div>
-      <div class="gal-item" onclick="openLboxEmoji('👑')">
-        <div class="gal-placeholder"><span class="gi">👑</span><span class="gl">Birthday Princess</span></div>
-        <div class="gal-ov">🔍</div>
-      </div>
-      <div class="gal-item" onclick="openLboxEmoji('🎁')">
-        <div class="gal-placeholder"><span class="gi">🎁</span><span class="gl">Loot Bags</span></div>
-        <div class="gal-ov">🔍</div>
-      </div>
-      <div class="gal-item" onclick="openLboxEmoji('✨')">
-        <div class="gal-placeholder"><span class="gi">✨</span><span class="gl">Magic Moments</span></div>
-        <div class="gal-ov">🔍</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WAVE6 -->
-<div class="wave" style="background:var(--cream);margin-top:-2px">
-  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="var(--cream)">
-    <path d="M0,70 L0,30 C240,70 480,0 720,32 C960,62 1200,8 1440,36 L1440,70Z"/>
-  </svg>
-</div>
-
-<!-- LOCATION -->
-<section id="location" style="background:var(--cream)">
-  <div class="inner">
-    <span class="sec-icon">📍</span>
-    <h2 class="sec-head">Find Us Here</h2>
-    <p class="sec-sub">Jollibee Malhacan, Meycauayan — we'll be waiting for you! 🗺️</p>
-    <div class="loc-card">
-      <iframe class="loc-map"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.0!2d120.9652!3d14.7342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b4bfb3f8c5c5%3A0x2a5e5c7a6c4d1f2e!2sJollibee+Malhacan%2C+Meycauayan+City%2C+Bulacan!5e0!3m2!1sen!2sph!4v1700000000000"
-        allowfullscreen loading="lazy" title="Jollibee Malhacan location"></iframe>
-      <div class="loc-info">
-        <h3>
-          <img class="loc-logo"
-            src="https://companieslogo.com/img/orig/JBFCF_BIG-6f9dd9a2.png?t=1720244492"
-            alt="Jollibee" onerror="this.outerHTML='🐝'">
-          Jollibee Malhacan, Meycauayan
-        </h3>
-        <div class="loc-row"><span class="ico">📍</span><span>Malhacan Road, Meycauayan City, Bulacan, Philippines</span></div>
-        <div class="loc-row"><span class="ico">⏰</span><span>Party starts 12:30 PM — please arrive on time! 🕧</span></div>
-        <div class="loc-row"><span class="ico">🚗</span><span>Parking available · FX & jeepney routes nearby</span></div>
-        <a class="btn-dir" href="https://maps.google.com/?q=Jollibee+Malhacan+Meycauayan+Bulacan" target="_blank">📍 Get Directions</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <img class="ft-logo"
-    src="https://companieslogo.com/img/orig/JBFCF_BIG-6f9dd9a2.png?t=1720244492"
-    alt="Jollibee" onerror="this.outerHTML='<div style=\'font-size:3rem\'>🐝</div>'">
-  <div class="ft-name">Happy 1st Birthday, Sabrina Elyse! 💛</div>
-  <p>Made with ❤️ for the sweetest little bee on earth</p>
-  <p style="margin-top:6px;opacity:.65">July 26, 2026 · Jollibee Malhacan, Meycauayan</p>
-  <p style="margin-top:18px">
-    <a class="ft-link" href="#" onclick="showPage('pb');return false">📸 Visit the Photobooth →</a>
-  </p>
-</footer>
-
-</div><!-- end invite page -->
-
-<!-- ═══════ PHOTOBOOTH PAGE ═══════ -->
-<div id="page-pb" class="page hidden">
-  <div style="height:58px;background:var(--red)"></div>
-  <div class="wave" style="background:var(--red);margin-top:-2px">
-    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="var(--cream)">
-      <path d="M0,70 L0,28 C240,70 480,0 720,32 C960,62 1200,8 1440,36 L1440,70Z"/>
-    </svg>
-  </div>
-
-  <section id="photobooth">
-    <div class="inner">
-      <div class="pb-hero">
-        <img class="pb-logo"
-          src="https://companieslogo.com/img/orig/JBFCF_BIG-6f9dd9a2.png?t=1720244492"
-          alt="Jollibee" onerror="this.outerHTML='<div style=\'font-size:4rem\'>🐝</div>'">
-        <div class="pb-title">🐝 Sabrina's Photo Booth!</div>
-        <p class="pb-sub">Upload your party photo, pick a Jollibee frame, add stickers & download! 💛</p>
+      <div class="scroll-hint">
+        <span>See Details Below</span>
+        <span style="font-size: 1.2rem; margin-top: 2px">↓</span>
       </div>
 
-      <div class="pb-booth">
-        <div class="pb-hdr">
-          <div class="pb-hdr-title">
-            <img src="https://companieslogo.com/img/orig/JBFCF-f8098eac.png?t=1720244492"
-                 style="height:28px;vertical-align:middle;margin-right:8px"
-                 alt="Jollibee" onerror="this.outerHTML='🐝 '">
-            Party Photo Studio
+      <div class="wave bottom" style="background: transparent">
+        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="#fff">
+          <path d="M0,70 L0,28 C240,70 480,0 720,32 C960,62 1200,8 1440,36 L1440,70Z" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- DETAILS SECTION -->
+    <section id="about">
+      <div class="inner">
+        <span class="sec-icon">🎊</span>
+        <h2 class="sec-head">Party Details</h2>
+        <p class="sec-sub">Mark your calendars — it's going to be one bee-utiful celebration! 🐝</p>
+
+        <div class="detail-grid">
+          <div class="dcard" onclick="triggerBalloons()">
+            <span class="big">🐝</span>
+            <h3>The Birthday Star</h3>
+            <p class="hl">Sabrina Elyse</p>
+            <p>Turning 1! 🎂</p>
           </div>
-          <div class="pb-btns">
-            <button class="pb-btn" onclick="triggerUpload()">📁 Upload Photo</button>
-            <button class="pb-btn sec" onclick="downloadCanvas()">💾 Download</button>
+          <div class="dcard" onclick="triggerBalloons()">
+            <span class="big">🗓️</span>
+            <h3>Date</h3>
+            <p class="hl">July 26, 2026</p>
+            <p>Sunday</p>
+          </div>
+          <div class="dcard" onclick="triggerBalloons()">
+            <span class="big">⏰</span>
+            <h3>Program Time</h3>
+            <p class="hl">1:00 PM - 3:00 PM</p>
+            <p>Doors open 12:30 PM 🎨</p>
+          </div>
+          <div class="dcard" onclick="triggerBalloons()">
+            <span class="big">📍</span>
+            <h3>Venue</h3>
+            <p class="hl">Jollibee Malhacan</p>
+            <p>Meycauayan, Bulacan</p>
+          </div>
+          <!-- <div class="dcard" onclick="triggerBalloons()">
+            <span class="big">🎈</span>
+            <h3>Theme</h3>
+            <p class="hl">Jollibee Kids Party</p>
+            <p>Bee-utiful fun!</p>
+          </div>
+          <div class="dcard" onclick="triggerBalloons()">
+            <span class="big">🎨</span>
+            <h3>Color Theme</h3>
+            <p class="hl">Fun & Festive</p>
+            <p>Red & Yellow 💛❤️</p>
+          </div> -->
+        </div>
+      </div>
+
+      <div class="wave bottom" style="background: transparent">
+        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="var(--red)">
+          <path d="M0,0 C360,70 720,0 1080,60 C1260,80 1380,22 1440,40 L1440,70 L0,70Z" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN SECTION -->
+    <section id="countdown">
+      <div class="inner">
+        <div class="cd-title">⏳ Counting down to Sabrina's Big Day!</div>
+        <div class="cd-grid">
+          <div class="cd-box">
+            <span class="cd-num" id="cd-d">--</span><span class="cd-lbl">Days</span>
+          </div>
+          <div class="cd-box">
+            <span class="cd-num" id="cd-h">--</span><span class="cd-lbl">Hours</span>
+          </div>
+          <div class="cd-box">
+            <span class="cd-num" id="cd-m">--</span><span class="cd-lbl">Mins</span>
+          </div>
+          <div class="cd-box">
+            <span class="cd-num" id="cd-s">--</span><span class="cd-lbl">Secs</span>
           </div>
         </div>
+      </div>
+      <div class="wave bottom" style="background: transparent">
+        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="var(--cream)">
+          <path d="M0,70 L0,42 C360,0 720,70 1080,22 C1260,0 1380,50 1440,30 L1440,70Z" />
+        </svg>
+      </div>
+    </section>
 
-        <div class="pb-stage">
-          <!-- Upload zone -->
-          <div class="pb-upload" id="pb-upload" onclick="triggerUpload()">
-            <input type="file" id="photo-file" accept="image/*" onchange="loadPhoto(event)">
-            <span class="ui">📷</span>
-            <p><strong>Click here</strong> to upload your party photo</p>
-            <p style="margin-top:5px;font-size:.82rem;color:#aaa">JPG, PNG, WEBP · up to 10MB</p>
-          </div>
+    <!-- TIMELINE PROGRAMME -->
+    <section id="programme">
+      <div class="inner">
+        <span class="sec-icon">🎪</span>
+        <h2 class="sec-head">Party Programme</h2>
+        <p class="sec-sub">Here's everything lined up for Sabrina's magical day! 🎠</p>
 
-          <!-- Canvas -->
-          <div class="pb-cw" id="pb-cw">
-            <canvas id="pb-canvas" width="540" height="405"></canvas>
-          </div>
-
-          <!-- Frame picker -->
-          <div style="width:100%;max-width:540px">
-            <p style="font-family:'Fredoka One',cursive;color:var(--red);margin-bottom:8px;font-size:.95rem">🖼️ Choose a Jollibee Frame:</p>
-            <div class="frame-sel" id="frame-sel">
-              <div class="f-opt active" onclick="setFrame('none',this)">No Frame</div>
-              <div class="f-opt" onclick="setFrame('jollibee',this)">
-                <img src="https://companieslogo.com/img/orig/JBFCF-f8098eac.png?t=1720244492"
-                     style="height:18px" alt="" onerror="this.outerHTML='🐝'"> Jollibee Classic
-              </div>
-              <div class="f-opt" onclick="setFrame('birthday',this)">🎂 1st Birthday</div>
-              <div class="f-opt" onclick="setFrame('chickenjoy',this)">🍗 Chickenjoy</div>
-              <div class="f-opt" onclick="setFrame('stars',this)">⭐ Stars & Balloons</div>
+        <div class="tl">
+          <!-- Early Arrival Activity Block -->
+          <div class="tli">
+            <div class="tl-dot">🎨</div>
+            <div class="tl-time">12:30 PM - 01:00 PM</div>
+            <div class="tl-title">Early Bird Welcome Activities</div>
+            <div class="tl-desc">
+              Be there early! Enjoy our custom Photobooth setup and creative Facepaint corner just
+              for kids while waiting for the main event.
             </div>
           </div>
-
-          <!-- Stickers -->
-          <div style="width:100%;max-width:540px">
-            <p style="font-family:'Fredoka One',cursive;color:var(--red);margin-bottom:8px;font-size:.95rem">✨ Add Stickers (click to place · drag to move):</p>
-            <div class="sticker-bar">
-              <span class="st-opt" onclick="addSticker('🐝')">🐝</span>
-              <span class="st-opt" onclick="addSticker('🍗')">🍗</span>
-              <span class="st-opt" onclick="addSticker('🍝')">🍝</span>
-              <span class="st-opt" onclick="addSticker('🍟')">🍟</span>
-              <span class="st-opt" onclick="addSticker('🎂')">🎂</span>
-              <span class="st-opt" onclick="addSticker('🎈')">🎈</span>
-              <span class="st-opt" onclick="addSticker('⭐')">⭐</span>
-              <span class="st-opt" onclick="addSticker('💛')">💛</span>
-              <span class="st-opt" onclick="addSticker('❤️')">❤️</span>
-              <span class="st-opt" onclick="addSticker('👑')">👑</span>
-              <span class="st-opt" onclick="addSticker('🎉')">🎉</span>
-              <span class="st-opt" onclick="addSticker('🌟')">🌟</span>
-              <span class="st-opt" onclick="addSticker('🍰')">🍰</span>
-              <span class="st-opt" onclick="addSticker('🎁')">🎁</span>
+          <!-- Programme Segment 1 -->
+          <div class="tli">
+            <div class="tl-dot">📣</div>
+            <div class="tl-time">01:00 PM - 01:15 PM</div>
+            <div class="tl-title">Priming & Grand Entrance</div>
+            <div class="tl-desc">
+              Hosts welcome guests, conduct warm-up cheers, and lead the Grand Entrance of the
+              celebrant and parents. Opening prayer and welcome remarks.
             </div>
           </div>
-
-          <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%;max-width:540px">
-            <button class="pb-btn" onclick="clearStickers()">🗑️ Clear Stickers</button>
-            <button class="pb-btn sec" onclick="resetPhoto()">🔄 New Photo</button>
+          <!-- Programme Segment 2 -->
+          <div class="tli">
+            <div class="tl-dot">🎮</div>
+            <div class="tl-time">01:15 PM - 01:45 PM</div>
+            <div class="tl-title">Party Games (Kids)</div>
+            <div class="tl-desc">
+              2 to 3 parlor games hosted by the Jollibee staff. Prizes are distributed to winners.
+            </div>
           </div>
-
-          <button class="pb-dl" onclick="downloadCanvas()">💾 Download My Photo! 🎉</button>
-
-          <!-- Saved strip -->
-          <div class="saved-strip" id="saved-strip">
-            <h4>📁 Your Downloaded Photos:</h4>
-            <div class="thumb-row" id="thumb-row"></div>
+          <!-- Programme Segment 3 -->
+          <div class="tli">
+            <div class="tl-dot">🐝</div>
+            <div class="tl-time">01:45 PM - 02:00 PM</div>
+            <div class="tl-title">Mascot Appearance</div>
+            <div class="tl-desc">
+              The highlight of the party! Jollibee enters, dances, and poses for photos with the
+              celebrant and guests.
+            </div>
+          </div>
+          <!-- Programme Segment 4 -->
+          <div class="tli">
+            <div class="tl-dot">🍗</div>
+            <div class="tl-time">02:00 PM - 02:40 PM</div>
+            <div class="tl-title">Meals & Cake Cutting</div>
+            <div class="tl-desc">
+              Food is served to guests. Celebrant blows the cake and makes a wish. Hosts may conduct
+              games for adults during this time.
+            </div>
+          </div>
+          <!-- Programme Segment 5 -->
+          <div class="tli">
+            <div class="tl-dot">💖</div>
+            <div class="tl-time">02:40 PM - 02:50 PM</div>
+            <div class="tl-title">Closing Ceremonies</div>
+            <div class="tl-desc">
+              Message of thanks from the parents, awarding of giveaways, and photo opportunities.
+            </div>
+          </div>
+          <!-- Programme Segment 6 -->
+          <div class="tli">
+            <div class="tl-dot">🚪</div>
+            <div class="tl-time">02:50 PM - 03:00 PM</div>
+            <div class="tl-title">Pack-up & Exit</div>
+            <div class="tl-desc">
+              The 2-hour duration limit is strictly followed. Staff gently ushers guests out to
+              prepare the room for the next event.
+            </div>
           </div>
         </div>
       </div>
+      <div class="wave bottom" style="background: transparent">
+        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="var(--red)">
+          <path d="M0,70 L0,20 C360,70 720,0 1080,50 C1260,70 1380,20 1440,40 L1440,70Z" />
+        </svg>
+      </div>
+    </section>
 
-      <!-- Hashtag card -->
-      <div style="text-align:center;margin-top:48px;padding:32px;background:#fff;
-        border-radius:22px;border:3px solid var(--yellow);max-width:600px;margin-left:auto;margin-right:auto;margin-top:40px">
-        <div style="margin-bottom:10px">
-          <img src="https://companieslogo.com/img/orig/JBFCF-f8098eac.png?t=1720244492"
-               style="height:60px" alt="Jollibee" onerror="this.outerHTML='<div style=\'font-size:3rem\'>🐝</div>'">
-        </div>
-        <div style="font-family:'Fredoka One',cursive;font-size:1.5rem;color:var(--red);margin-bottom:8px">Share Your Party Memories!</div>
-        <p style="color:#666;font-weight:700;font-size:.95rem;max-width:460px;margin:0 auto">
-          Tag us using
-          <span style="color:var(--red);font-weight:800">#SabrinaElyse1stBirthday</span>
-          and
-          <span style="color:var(--red);font-weight:800">#JollibeeBirthday2026</span>
-          🐝💛
+    <!-- STANDALONE RSVP SECTION -->
+    <section id="rsvp">
+      <div class="inner">
+        <span class="sec-icon">✉️</span>
+        <h2 class="sec-head" style="color: var(--yellow)">Will You Join Us?</h2>
+        <p class="sec-sub" style="color: rgba(255, 255, 255, 0.9)">
+          Let us know you're coming so we can save your seat! 🍟
         </p>
+
+        <div class="rsvp-form-container">
+          <div class="rsvp-form" id="rsvp-form">
+            <input
+              type="text"
+              id="rsvp-name"
+              placeholder="Enter your full name..."
+              maxlength="40"
+            />
+            <button class="btn-rsvp" onclick="submitRSVP()">Count me in! 🙋</button>
+          </div>
+          <div class="rsvp-ok" id="rsvp-ok">🎊 See you at Sabrina's party! 🐝</div>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <footer>
-    <img class="ft-logo"
-      src="https://companieslogo.com/img/orig/JBFCF_BIG-6f9dd9a2.png?t=1720244492"
-      alt="Jollibee" onerror="this.outerHTML='<div style=\'font-size:3rem\'>🐝</div>'">
-    <div class="ft-name">Happy 1st Birthday, Sabrina Elyse! 💛</div>
-    <p style="margin-top:14px">
-      <a class="ft-link" href="#" onclick="showPage('invite');return false">← Back to Invite</a>
-    </p>
-  </footer>
-</div><!-- end photobooth page -->
+      <div class="wave bottom" style="background: transparent">
+        <svg viewBox="0 0 1440 70" preserveAspectRatio="none" fill="#fff">
+          <path d="M0,0 C360,70 720,0 1080,60 C1260,80 1380,22 1440,40 L1440,70 L0,70Z" />
+        </svg>
+      </div>
+    </section>
 
-<!-- LIGHTBOX -->
-<div class="lbox" id="lbox" onclick="closeLbox()">
-  <button class="lbox-close" onclick="closeLbox()">✕</button>
-  <img id="lbox-img" src="" alt="" style="display:none">
-  <div id="lbox-emoji" class="lbox-emoji" style="display:none"></div>
-  <p class="lbox-hint">Click anywhere to close</p>
-</div>
+    <!-- LOCATION MAP -->
+    <section id="location">
+      <div class="inner">
+        <span class="sec-icon">📍</span>
+        <h2 class="sec-head">Venue Direction</h2>
+        <p class="sec-sub">Jollibee Malhacan, Meycauayan — let's celebrate together!</p>
 
-<!-- TOAST -->
-<div id="toast"></div>
+        <div class="loc-card">
+          <iframe
+            class="loc-map"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.0!2d120.9652!3d14.7342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b4bfb3f8c5c5%3A0x2a5e5c7a6c4d1f2e!2sJollibee+Malhacan%2C+Meycauayan+City%2C+Bulacan!5e0!3m2!1sen!2sph!4v1700000000000"
+            allowfullscreen
+            loading="lazy"
+            title="Map Destination"
+          ></iframe>
+          <div class="loc-info">
+            <h3>🍟 Jollibee Malhacan</h3>
+            <div class="loc-row">
+              <span>📍</span><span>Malhacan Rd, Meycauayan City, Bulacan</span>
+            </div>
+            <div class="loc-row">
+              <span>⏰</span><span>Pre-activities start at 12:30 PM Sunday</span>
+            </div>
+            <a
+              class="btn-dir"
+              href="https://maps.google.com/?q=Jollibee+Malhacan+Meycauayan+Bulacan"
+              target="_blank"
+              >🗺️ Open Map Directions</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
 
-<script>
-// ── PAGE TOGGLE ──
-function showPage(p){
-  document.getElementById('page-invite').classList.toggle('hidden',p!=='invite');
-  document.getElementById('page-pb').classList.toggle('hidden',p!=='pb');
-  document.getElementById('nav-invite').classList.toggle('active',p==='invite');
-  document.getElementById('nav-pb').classList.toggle('active',p==='pb');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
+    <!-- FOOTER WITH LEGAL NOTICES -->
+    <footer>
+      <div class="ft-logo">🐝</div>
+      <div class="ft-name">Happy 1st Birthday, Sabrina Elyse! 💛</div>
+      <p>July 26, 2026 · Jollibee Kids Celebration Invite</p>
+      <p class="ft-legal">
+        © 2026. All rights reserved. This invitation layout and design are for private,
+        non-commercial celebration use only. Jollibee, the Jollibee logo, and all associated
+        corporate characters, names, likenesses, and branding elements are registered trademarks and
+        properties of Jollibee Foods Corporation (JFC). No copyright or trademark infringement is
+        intended.
+      </p>
+    </footer>
 
-// ── CONFETTI ──
-const cc=document.getElementById('confetti-canvas');
-const cx=cc.getContext('2d');
-let cps=[];
-const cc_cols=['#E30613','#FFD600','#FF6D00','#fff','#FF3D00','#FFEB3B'];
-function resizeCC(){cc.width=innerWidth;cc.height=innerHeight}
-resizeCC();addEventListener('resize',resizeCC);
-class CP{
-  constructor(){this.reset(true)}
-  reset(init){
-    this.x=Math.random()*cc.width;
-    this.y=init?Math.random()*cc.height:-20;
-    this.w=6+Math.random()*10;this.h=4+Math.random()*6;
-    this.c=cc_cols[Math.floor(Math.random()*cc_cols.length)];
-    this.r=Math.random()*Math.PI*2;this.rs=(Math.random()-.5)*.12;
-    this.vx=(Math.random()-.5)*2;this.vy=1.2+Math.random()*2;this.o=.7+Math.random()*.3
-  }
-  update(){this.x+=this.vx;this.y+=this.vy;this.r+=this.rs;if(this.y>cc.height+30)this.reset(false)}
-  draw(c){c.save();c.globalAlpha=this.o;c.translate(this.x,this.y);c.rotate(this.r);c.fillStyle=this.c;c.fillRect(-this.w/2,-this.h/2,this.w,this.h);c.restore()}
-}
-for(let i=0;i<60;i++)cps.push(new CP());
-(function loop(){cx.clearRect(0,0,cc.width,cc.height);cps.forEach(p=>{p.update();p.draw(cx)});requestAnimationFrame(loop)})();
+    <!-- NOTIFICATION SYSTEM TOAST -->
+    <div id="toast"></div>
 
-// ── BALLOONS ──
-const bems=['🎈','🎀','🎊','💛','❤️','🐝'];
-function launchBalloon(){
-  const b=document.createElement('div');
-  b.className='balloon';
-  b.textContent=bems[Math.floor(Math.random()*bems.length)];
-  b.style.left=(5+Math.random()*90)+'vw';
-  b.style.fontSize=(1.8+Math.random()*1.8)+'rem';
-  const dur=6+Math.random()*6;
-  b.style.animation=`bRise ${dur}s linear forwards`;
-  document.body.appendChild(b);
-  setTimeout(()=>b.remove(),dur*1000);
-}
-function triggerBalloons(){for(let i=0;i<7;i++)setTimeout(launchBalloon,i*160);showToast('🎈 Woohoo! 🎊')}
-setInterval(launchBalloon,4500);
-setTimeout(()=>{for(let i=0;i<4;i++)setTimeout(launchBalloon,i*900)},1600);
+    <script>
+      let isMobile = window.innerWidth < 650;
+      window.addEventListener("resize", () => {
+        isMobile = window.innerWidth < 650;
+      });
 
-// ── COUNTDOWN ──
-function updateCD(){
-  const t=new Date('2026-07-26T12:30:00+08:00'),n=new Date(),d=t-n;
-  if(d<=0){['cd-d','cd-h','cd-m','cd-s'].forEach((id,i)=>document.getElementById(id).textContent=['🎉','🐝','🎂','🎈'][i]);return}
-  document.getElementById('cd-d').textContent=String(Math.floor(d/86400000)).padStart(2,'0');
-  document.getElementById('cd-h').textContent=String(Math.floor((d%86400000)/3600000)).padStart(2,'0');
-  document.getElementById('cd-m').textContent=String(Math.floor((d%3600000)/60000)).padStart(2,'0');
-  document.getElementById('cd-s').textContent=String(Math.floor((d%60000)/1000)).padStart(2,'0');
-}
-updateCD();setInterval(updateCD,1000);
+      const wrapper = document.querySelector(".parallax-wrapper");
+      const heroSec = document.getElementById("hero");
+      const scrollTopBtn = document.getElementById("scroll-top-btn");
+      const bgMusic = document.getElementById("bg-music");
+      const musicBtn = document.getElementById("music-btn");
 
-// ── SCROLL REVEAL ──
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.15});
-document.querySelectorAll('.tli').forEach(el=>obs.observe(el));
+      // ── INTERACTIVE MOUSE FOLLOW (DESKTOP) ──
+      document.addEventListener("mousemove", (e) => {
+        if (isMobile) return;
+        const cx = window.innerWidth / 2;
+        const cy = window.innerHeight / 2;
+        const dx = (e.clientX - cx) / cx;
+        const dy = (e.clientY - cy) / cy;
 
-// ── RSVP ──
-function submitRSVP(){
-  const n=document.getElementById('rsvp-name').value.trim();
-  if(!n){showToast('🌟 Please enter your name!');document.getElementById('rsvp-name').focus();return}
-  document.getElementById('rsvp-form').style.display='none';
-  const ok=document.getElementById('rsvp-ok');ok.style.display='block';
-  ok.innerHTML=`🎊 Yay, ${n}! See you at Sabrina's party! 🐝🍟🎂`;
-  triggerBalloons();for(let i=0;i<8;i++)setTimeout(launchBalloon,i*130);
-}
-document.getElementById('rsvp-name').addEventListener('keydown',e=>{if(e.key==='Enter')submitRSVP()});
+        wrapper.style.transform = `rotateY(${dx * 15}deg) rotateX(${-dy * 15}deg)`;
+      });
 
-// ── LIGHTBOX ──
-function openLbox(el){
-  const img=el.querySelector('img');
-  const limg=document.getElementById('lbox-img');
-  const lem=document.getElementById('lbox-emoji');
-  if(img&&img.complete&&img.naturalHeight!==0){
-    limg.src=img.src;limg.style.display='block';lem.style.display='none';
-  }else{
-    const ph=el.querySelector('.gi');
-    lem.textContent=ph?ph.textContent:'🐝';lem.style.display='block';limg.style.display='none';
-  }
-  document.getElementById('lbox').classList.add('open');
-}
-function openLboxEmoji(e){
-  document.getElementById('lbox-emoji').textContent=e;document.getElementById('lbox-emoji').style.display='block';
-  document.getElementById('lbox-img').style.display='none';
-  document.getElementById('lbox').classList.add('open');
-}
-function closeLbox(){document.getElementById('lbox').classList.remove('open')}
-addEventListener('keydown',e=>{if(e.key==='Escape')closeLbox()});
+      // ── INTERACTIVE SWIPE / TOUCH MOVE (MOBILE) ──
+      heroSec.addEventListener(
+        "touchmove",
+        (e) => {
+          if (!isMobile) return;
+          const touch = e.touches[0];
+          const cx = window.innerWidth / 2;
+          const cy = window.innerHeight / 2;
+          const dx = (touch.clientX - cx) / cx;
+          const dy = (touch.clientY - cy) / cy;
 
-// ── TOAST ──
-let toastT;
-function showToast(msg){
-  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
-  clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3000);
-}
+          wrapper.style.transform = `rotateY(${dx * 18}deg) rotateX(${-dy * 18}deg)`;
+        },
+        { passive: true },
+      );
 
-// ── PHOTOBOOTH ──
-let pbCanvas,pbCtx,userImg=null,curFrame='none',stickers=[],selSt=null,isDrag=false,doff={x:0,y:0};
-const JOLLIBEE_LOGO_URL='https://companieslogo.com/img/orig/JBFCF_BIG-6f9dd9a2.png?t=1720244492';
-let jbLogoImg=null;
-// Preload logo
-(()=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>{jbLogoImg=i;if(userImg)renderCanvas()};i.src=JOLLIBEE_LOGO_URL})();
+      const resetHeroTilt = () => {
+        wrapper.style.transform = "rotateY(0deg) rotateX(0deg)";
+      };
+      heroSec.addEventListener("touchend", resetHeroTilt);
+      document.addEventListener("mouseleave", resetHeroTilt);
 
-function initPB(){
-  pbCanvas=document.getElementById('pb-canvas');
-  pbCtx=pbCanvas.getContext('2d');
-  renderCanvas();
-  pbCanvas.addEventListener('mousedown',smd);pbCanvas.addEventListener('mousemove',smm);pbCanvas.addEventListener('mouseup',smu);
-  pbCanvas.addEventListener('touchstart',std,{passive:true});pbCanvas.addEventListener('touchmove',stm,{passive:false});pbCanvas.addEventListener('touchend',smu);
-}
-initPB();
+      // ── SCROLL TO TOP TRIGGER LOGIC ──
+      const heroObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              scrollTopBtn.classList.remove("show");
+            } else {
+              scrollTopBtn.classList.add("show");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      heroObserver.observe(heroSec);
 
-function gPos(e){
-  const r=pbCanvas.getBoundingClientRect(),sx=pbCanvas.width/r.width,sy=pbCanvas.height/r.height;
-  const t=e.touches?e.touches[0]:e;
-  return{x:(t.clientX-r.left)*sx,y:(t.clientY-r.top)*sy};
-}
-function smd(e){const p=gPos(e);for(let i=stickers.length-1;i>=0;i--){const s=stickers[i];if(Math.abs(p.x-s.x)<30&&Math.abs(p.y-s.y)<30){selSt=i;isDrag=true;doff={x:p.x-s.x,y:p.y-s.y};stickers.push(stickers.splice(i,1)[0]);selSt=stickers.length-1;return}}selSt=null}
-function smm(e){if(!isDrag||selSt===null)return;const p=gPos(e);stickers[selSt].x=p.x-doff.x;stickers[selSt].y=p.y-doff.y;renderCanvas()}
-function smu(){isDrag=false}
-function std(e){smd(e)}
-function stm(e){e.preventDefault();smm(e)}
+      function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
 
-function triggerUpload(){document.getElementById('photo-file').click()}
-function loadPhoto(e){
-  const f=e.target.files[0];if(!f)return;
-  const r=new FileReader();
-  r.onload=ev=>{const i=new Image();i.onload=()=>{userImg=i;document.getElementById('pb-upload').style.display='none';document.getElementById('pb-cw').style.display='block';renderCanvas();showToast('✅ Photo loaded! Add frames & stickers!')};i.src=ev.target.result};
-  r.readAsDataURL(f);
-}
-function setFrame(fr,el){curFrame=fr;document.querySelectorAll('.f-opt').forEach(f=>f.classList.remove('active'));el.classList.add('active');renderCanvas()}
-function addSticker(em){
-  if(!userImg){showToast('📷 Upload a photo first!');return}
-  stickers.push({emoji:em,x:80+Math.random()*(pbCanvas.width-160),y:80+Math.random()*(pbCanvas.height-160),size:48});
-  renderCanvas();showToast(`${em} Added! Drag to move it!`);
-}
-function clearStickers(){stickers=[];renderCanvas();showToast('🗑️ Stickers cleared!')}
-function resetPhoto(){userImg=null;stickers=[];curFrame='none';document.querySelectorAll('.f-opt').forEach(f=>f.classList.remove('active'));document.querySelector('.f-opt').classList.add('active');document.getElementById('pb-upload').style.display='block';document.getElementById('pb-cw').style.display='none';document.getElementById('photo-file').value='';renderCanvas()}
+      // ── AUDIO CONTROLLER ENGINE ──
+      function toggleMusic() {
+        if (bgMusic.paused) {
+          bgMusic
+            .play()
+            .then(() => {
+              musicBtn.classList.add("playing");
+              musicBtn.textContent = "⏸️";
+              showToast("🎵 Playing Party Music!");
+            })
+            .catch((err) => {
+              console.warn("Audio play blocked or missing track file:", err);
+              showToast("⚠️ Add your jollibee-theme.mp3 file to play music!");
+            });
+        } else {
+          bgMusic.pause();
+          musicBtn.classList.remove("playing");
+          musicBtn.textContent = "🎵";
+          showToast("🔇 Music Paused");
+        }
+      }
 
-function renderCanvas(){
-  if(!pbCanvas)return;
-  const w=pbCanvas.width,h=pbCanvas.height;
-  pbCtx.clearRect(0,0,w,h);
-  if(!userImg){
-    pbCtx.fillStyle='#FFF8E7';pbCtx.fillRect(0,0,w,h);
-    pbCtx.fillStyle='#E30613';pbCtx.font='bold 24px Nunito,sans-serif';pbCtx.textAlign='center';
-    pbCtx.fillText('📷 Upload your photo to get started!',w/2,h/2);pbCtx.textAlign='left';return;
-  }
-  pbCtx.drawImage(userImg,0,0,w,h);
-  drawFrame(w,h);
-  pbCtx.textAlign='center';pbCtx.textBaseline='middle';
-  stickers.forEach((s,i)=>{pbCtx.save();if(i===selSt){pbCtx.shadowColor='#FFD600';pbCtx.shadowBlur=14}pbCtx.font=s.size+'px sans-serif';pbCtx.fillText(s.emoji,s.x,s.y);pbCtx.restore()});
-  pbCtx.textAlign='left';pbCtx.textBaseline='alphabetic';
-}
+      // ── CONFETTI RUN ENGINE (CALM DRIFT) ──
+      const cc = document.getElementById("confetti-canvas");
+      const cx = cc.getContext("2d");
+      let cps = [];
+      const colors = ["#e31837", "#ffc20e", "#ff6d00", "#fff"];
+      function resizeCC() {
+        cc.width = window.innerWidth;
+        cc.height = window.innerHeight;
+      }
+      resizeCC();
+      window.addEventListener("resize", resizeCC);
 
-function drawFrame(w,h){
-  const t=pbCtx;
-  if(curFrame==='none')return;
-  if(curFrame==='jollibee'){
-    // Red & yellow thick border
-    t.save();
-    t.strokeStyle='#E30613';t.lineWidth=22;t.strokeRect(11,11,w-22,h-22);
-    t.strokeStyle='#FFD600';t.lineWidth=7;t.strokeRect(24,24,w-48,h-48);
-    // Corner bee logos (from actual logo)
-    t.font='34px sans-serif';t.textAlign='center';t.textBaseline='middle';
-    if(jbLogoImg){const s=52;t.drawImage(jbLogoImg,6,6,s,s);t.drawImage(jbLogoImg,w-s-6,6,s,s);t.drawImage(jbLogoImg,6,h-s-6,s,s);t.drawImage(jbLogoImg,w-s-6,h-s-6,s,s)}
-    else{t.fillText('🐝',36,36);t.fillText('🐝',w-36,36);t.fillText('🐝',36,h-36);t.fillText('🐝',w-36,h-36)}
-    // Bottom banner
-    t.fillStyle='rgba(227,6,19,.88)';t.fillRect(0,h-64,w,64);
-    if(jbLogoImg){t.drawImage(jbLogoImg,12,h-58,48,48)}
-    t.fillStyle='#FFD600';t.font='bold 21px Fredoka One,cursive';t.textAlign='center';
-    t.fillText("🐝 Sabrina Elyse's 1st Birthday · July 26, 2026 🐝",w/2,h-28);
-    t.textAlign='left';t.restore();
-  } else if(curFrame==='birthday'){
-    t.save();
-    // Rainbow border
-    const cols=['#E30613','#FFD600','#FF6D00','#E30613','#FFD600'];
-    for(let i=0;i<20;i++){t.strokeStyle=cols[Math.floor(i/4)%cols.length];t.lineWidth=1;t.strokeRect(i,i,w-i*2,h-i*2)}
-    // Top banner
-    t.fillStyle='rgba(255,214,0,.92)';t.fillRect(0,0,w,56);
-    t.fillStyle='#E30613';t.font='bold 20px Nunito,sans-serif';t.textAlign='center';
-    t.fillText('🎂 Happy 1st Birthday, Sabrina Elyse! 🎂',w/2,36);
-    t.textAlign='left';t.restore();
-  } else if(curFrame==='chickenjoy'){
-    t.save();
-    // Spicy red border
-    t.strokeStyle='#E30613';t.lineWidth=24;t.strokeRect(12,12,w-24,h-24);
-    t.strokeStyle='#fff';t.lineWidth=5;t.strokeRect(26,26,w-52,h-52);
-    t.strokeStyle='#FFD600';t.lineWidth=3;t.strokeRect(32,32,w-64,h-64);
-    // Chicken emojis border decoration
-    t.font='26px sans-serif';t.textAlign='center';t.textBaseline='middle';
-    const cols2=9;for(let i=0;i<cols2;i++){const x=(w/(cols2+1))*(i+1);t.fillText('🍗',x,20);t.fillText('🍗',x,h-20)}
-    const rows2=5;for(let i=0;i<rows2;i++){const y=(h/6)*(i+1);t.fillText('🍗',20,y);t.fillText('🍗',w-20,y)}
-    // Bottom banner
-    t.fillStyle='rgba(227,6,19,.9)';t.fillRect(0,h-58,w,58);
-    t.fillStyle='#FFD600';t.font='bold 19px Nunito,sans-serif';t.textAlign='center';
-    t.fillText('🍗 Crispylicious · Juicylicious · Jollibee! 🍗',w/2,h-26);
-    t.textAlign='left';t.restore();
-  } else if(curFrame==='stars'){
-    t.save();
-    t.font='26px sans-serif';t.textAlign='center';t.textBaseline='middle';
-    const se=['⭐','🌟','💫','✨','⭐'];
-    const sc=10;for(let i=0;i<sc;i++){const x=(w/(sc+1))*(i+1);t.fillText(se[i%se.length],x,22);t.fillText(se[(i+2)%se.length],x,h-22)}
-    for(let i=0;i<6;i++){const y=(h/7)*(i+1);t.fillText('🌟',22,y);t.fillText('⭐',w-22,y)}
-    t.font='38px sans-serif';t.fillText('🌟',40,40);t.fillText('🌟',w-40,40);t.fillText('🌟',40,h-40);t.fillText('🌟',w-40,h-40);
-    t.fillStyle='rgba(255,214,0,.88)';t.fillRect(0,h-56,w,56);
-    t.fillStyle='#E30613';t.font='bold 18px Nunito,sans-serif';t.textAlign='center';
-    t.fillText('⭐ Sabrina Elyse · 1st Birthday · July 26, 2026 ⭐',w/2,h-26);
-    t.textAlign='left';t.restore();
-  }
-}
+      class ConfettiParticle {
+        constructor() {
+          this.reset(true);
+        }
+        reset(init) {
+          this.x = Math.random() * cc.width;
+          this.y = init ? Math.random() * cc.height : -20;
+          this.size = 5 + Math.random() * 6;
+          this.color = colors[Math.floor(Math.random() * colors.length)];
+          this.rotation = Math.random() * Math.PI * 2;
+          this.rotSpeed = (Math.random() - 0.5) * 0.05;
+          this.vx = (Math.random() - 0.5) * 1;
+          this.vy = 0.8 + Math.random() * 1.2;
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          this.rotation += this.rotSpeed;
+          if (this.y > cc.height + 20) this.reset(false);
+        }
+        draw() {
+          cx.save();
+          cx.translate(this.x, this.y);
+          cx.rotate(this.rotation);
+          cx.fillStyle = this.color;
+          cx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+          cx.restore();
+        }
+      }
+      for (let i = 0; i < 25; i++) cps.push(new ConfettiParticle());
+      function runConfetti() {
+        cx.clearRect(0, 0, cc.width, cc.height);
+        cps.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        requestAnimationFrame(runConfetti);
+      }
+      runConfetti();
 
-function downloadCanvas(){
-  if(!userImg){showToast('📷 Upload a photo first!');return}
-  renderCanvas();
-  const link=document.createElement('a');
-  link.download=`Sabrina-Birthday-${Date.now()}.png`;
-  link.href=pbCanvas.toDataURL('image/png');link.click();
-  const th=document.createElement('img');th.src=pbCanvas.toDataURL('image/png');th.className='thumb';
-  th.onclick=()=>{link.href=pbCanvas.toDataURL('image/png');link.click()};
-  document.getElementById('thumb-row').appendChild(th);
-  document.getElementById('saved-strip').style.display='block';
-  showToast('💾 Downloaded! Share #SabrinaElyse1stBirthday 💛');
-  for(let i=0;i<7;i++)setTimeout(launchBalloon,i*150);
-}
-</script>
-</body>
+      // ── REALTIME COUNTDOWN (Targeting the 12:30 PM Arrival time) ──
+      function updateCountdown() {
+        const target = new Date("2026-07-26T12:30:00+08:00"),
+          diff = target - new Date();
+        if (diff <= 0) {
+          ["cd-d", "cd-h", "cd-m", "cd-s"].forEach(
+            (id) => (document.getElementById(id).textContent = "🎉"),
+          );
+          return;
+        }
+        document.getElementById("cd-d").textContent = String(Math.floor(diff / 86400000)).padStart(
+          2,
+          "0",
+        );
+        document.getElementById("cd-h").textContent = String(
+          Math.floor((diff % 86400000) / 3600000),
+        ).padStart(2, "0");
+        document.getElementById("cd-m").textContent = String(
+          Math.floor((diff % 3600000) / 60000),
+        ).padStart(2, "0");
+        document.getElementById("cd-s").textContent = String(
+          Math.floor((diff % 60000) / 1000),
+        ).padStart(2, "0");
+      }
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+
+      // ── FLOATING BALLOONS ──
+      function launchBalloon() {
+        const icons = ["🎈", "💛", "❤️", "🐝"];
+        const b = document.createElement("div");
+        b.className = "balloon";
+        b.textContent = icons[Math.floor(Math.random() * icons.length)];
+        b.style.left = 5 + Math.random() * 90 + "vw";
+        b.style.fontSize = 1.5 + Math.random() * 1.5 + "rem";
+        const d = 6 + Math.random() * 4;
+        b.style.animationDuration = d + "s";
+        document.body.appendChild(b);
+        setTimeout(() => b.remove(), d * 1000);
+      }
+      function triggerBalloons() {
+        for (let i = 0; i < 6; i++) setTimeout(launchBalloon, i * 150);
+        showToast("✨ Bee-utiful! ✨");
+      }
+      setInterval(launchBalloon, 7000);
+
+      // ── SCROLL INTERSECTION OBSERVER ──
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("vis");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document.querySelectorAll(".tli").forEach((el) => obs.observe(el));
+
+      // ── GOOGLE FORMS ASYNC RSVP SUBMISSION ──
+      function submitRSVP() {
+        const val = document.getElementById("rsvp-name").value.trim();
+        if (!val) {
+          showToast("⚠️ Please enter your name!");
+          return;
+        }
+
+        const formURL =
+          "https://docs.google.com/forms/d/e/1FAIpQLSfEEVan71Lu7nOgOqN1IZ7u2M_InQoI5Au44E511MwtCRi4LQ/formResponse";
+        const formData = new FormData();
+        formData.append("entry.196875427", val);
+
+        fetch(formURL, {
+          method: "POST",
+          mode: "no-cors",
+          body: formData,
+        })
+          .then(() => {
+            document.getElementById("rsvp-form").style.display = "none";
+            const ok = document.getElementById("rsvp-ok");
+            ok.style.display = "block";
+            ok.textContent = `🎊 See you there, ${val}! 🐝`;
+            triggerBalloons();
+          })
+          .catch((err) => {
+            console.error(err);
+            showToast("⚠️ Connection error. Please try again!");
+          });
+      }
+
+      // ── TOAST CONTROLS ──
+      let toastTimer;
+      function showToast(m) {
+        const t = document.getElementById("toast");
+        t.textContent = m;
+        t.classList.add("show");
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove("show"), 2500);
+      }
+    </script>
+    <script>
+      const music = document.getElementById("bg-music");
+
+      // Set a fair volume (0.0 is silent, 1.0 is maximum)
+      music.volume = 0.3;
+
+      // Function to start the music on first click
+      function startMusic() {
+        music.play().catch((error) => {
+          console.log("Autoplay prevented, waiting for interaction.");
+        });
+        document.removeEventListener("click", startMusic);
+      }
+      document.addEventListener("click", startMusic);
+    </script>
+  </body>
 </html>
